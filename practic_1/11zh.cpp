@@ -9,15 +9,16 @@ using namespace std;
 // Вернет nullptr, если введенные значения приводят к ошибке
 float* getA(float x, float y, float z) {
     // Первая проверка a. Если знаменатель равен 0, то деление невозможно
-    if ((z + x * x / 4) != 0) {
-        float first = y - sqrt(abs(x));
-        float second = x - 4 / (z + pow(x, 2) / 4);
+    if ((z + pow(x, 2) / 4) != 0) {
+        float first = y - sqrt(fabs(x));
+        float second = x - y / (z + pow(x, 2) / 4);
 
         // Вторая проверка a. Если один из множителей равен 0,
-        // то возведение под натур. логарифм невозможно.ы
+        // то возведение под натур. логарифм невозможно.
         if (first != 0 and second != 0) {
             float* result;
-            *result = log(abs(first * second));
+            float res = log(fabs(first * second));
+            result = &res;
             return result;
         }
         else return nullptr;
