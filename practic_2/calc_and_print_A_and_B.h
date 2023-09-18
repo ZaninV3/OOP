@@ -1,19 +1,44 @@
 #pragma once
+
+// Для мат. констант
+#define _USE_MATH_DEFINES
+#include <math.h>  // Мат. константы и функции
+
 using namespace std;
+
+
+// Возвращает первую часть выражения a
+float getFirstPartOfA(float x, float y) {
+    return y - sqrt(abs(x));
+}
+
+// Возвращает вторую часть выражения a
+float getSecondPartOfA(float x, float y, float denominator) {
+    return x - y / denominator;
+}
+
+// Возвращает 0, если значенатель при значениях x и z равен 0
+// Иначе значение знаменателя
+float getDenominatorOfA(float x, float z) {
+    return z + pow(x, 2) / 4;
+}
+
 
 // Возвращает значение a
 // Вернет nullptr, если введенные значения приводят к ошибке
 float* getA(float x, float y, float z) {
     // Первая проверка a. Если знаменатель равен 0, то деление невозможно
-    if ((z + x * x / 4) != 0) {
-        float first = y - sqrt(abs(x));
-        float second = x - 4 / (z + pow(x, 2) / 4);
+    float denominator = getDenominatorOfA(x, z);
+    if (denominator != 0) {
+        float first = getFirstPartOfA(x, y);
+        float second = getSecondPartOfA(x, y, denominator);
 
         // Вторая проверка a. Если один из множителей равен 0,
         // то возведение под натур. логарифм невозможно.ы
         if (first != 0 and second != 0) {
             float* result;
-            *result = log(abs(first * second));
+            float res = log(abs(first * second));
+            result = &res;
             return result;
         }
         else return nullptr;
