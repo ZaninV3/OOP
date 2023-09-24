@@ -80,7 +80,62 @@ int main() {
     std::cout << "mass.setManyElements(7): " << std::endl;
     mass.setManyElements(7);
     mass.printMassive();
-    
+    printLine();
+
+
+
+    // Сумма всех элементов массива
+    std::cout << "mass.getSum(): " << mass.getSum() << std::endl;
+
+    // Произведение всех элементов массива
+    std::cout << "mass.getMultiplication(): ";
+    std::cout << mass.getMultiplication() << std::endl;
+
+    // Сумма всех модулей элементов массива
+    std::cout << "mass.getSumModule(): " << mass.getSumModule() << std::endl;
+
+    // Произведение всех модулей элементов массива
+    std::cout << "mass.getMultiplicationModule(): ";
+    std::cout << mass.getMultiplicationModule() << std::endl;
+
+    // Сумма всех квадратов элементов массива
+    std::cout << "mass.getSumSquare(): " << mass.getSumSquare() << std::endl;
+
+    // Далее алгоритмы методов перестают поддаваться адекватному именованию
+    // Поэтому следующие методы получают названия заданий из задачника
+    // https://ivtipm.github.io/Programming/Glava06/index06.htm#z136
+
+    // 136ZH
+    std::cout << "mass.getResultOf136zh(): ";
+    std::cout << mass.getResultOf136zh() << std::endl;
+
+    // 136Z
+    std::cout << "mass.getResultOf136z(): ";
+    std::cout << mass.getResultOf136z() << std::endl;
+
+    // 136I
+    std::cout << "mass.getResultOf136i(): ";
+    std::cout << mass.getResultOf136i() << std::endl;
+
+    // 136K
+    std::cout << "mass.getResultOf136k(): ";
+    std::cout << mass.getResultOf136k() << std::endl;
+
+    // 136L
+    std::cout << "mass.getResultOf136l(): ";
+    std::cout << mass.getResultOf136l() << std::endl;
+
+    // 136M
+    std::cout << "mass.getResultOf136m(): ";
+    std::cout << mass.getResultOf136m() << std::endl;
+
+    // 136N
+    std::cout << "mass.getResultOf136n(): ";
+    std::cout << mass.getResultOf136n() << std::endl;
+
+    // 136O
+    std::cout << "mass.getResultOf136o(): ";
+    std::cout << mass.getResultOf136o() << std::endl;
 
     printLine();
     printLine();
