@@ -64,6 +64,11 @@ int main() {
     std::cout << "mass.addElement(-5, 3): " << std::endl;
     mass.addElement(-5, 3);
     mass.printMassive();
+    printLine();
+
+    // Можно выборочно получить значение элемента по индексу
+    std::cout << "mass.getElement(2): " << mass.getElement(2) << std::endl;
+
 
     printLine();
     printLine();

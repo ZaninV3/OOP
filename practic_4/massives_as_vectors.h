@@ -96,6 +96,19 @@ public:
         }
     }
 
+    // Возвращает элемент по индексу
+    // Если индекс указан некорректно,
+    // возвращает пустую переменную типа T
+    T getElement(int index) {
+        if (checkIndex(index)) {
+            return massive[index];
+        }
+        else {  // Нам нужно хоть что-то вернуть
+            T val;
+            return val;
+        }
+    }
+
     // Деструктор
     ~Massive() {}
 };
