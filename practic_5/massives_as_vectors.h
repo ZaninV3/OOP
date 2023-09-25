@@ -1,9 +1,10 @@
 #pragma once
-#include <iostream>
-#include <vector>
-#include <typeinfo>
-#include <cstring>
-#include <cmath>
+#include <iostream>  // cout, cin и endl
+#include <vector>  // массив
+#include <typeinfo>  // Для определения типа
+#include <cstring>  // Для работы со строками
+#include <cmath>  // Математические методы
+#include <fstream>  // Работа с файлами
 
 
 // Класс массив, использующий vector
@@ -579,3 +580,110 @@ public:
     // Деструктор
     ~Massive() {}
 };
+
+// Создание бинарного файла
+bool createBinFile(std::string filename) {
+    // Создаем файл в режиме binary
+    std::ofstream afile(filename, std::ios::binary);
+
+    // Сразу закрываем
+    afile.close();
+
+    // Заново открываем для проверки создания
+    std::ifstream file(filename, std::ios::binary);
+
+    if (file.is_open()) {
+        // Сообщаем пользователю, что файл создан успешно
+        std::cout << "file " << filename << " has been created" << std::endl;
+        afile.close();
+        return true;
+    }
+    else {
+        std::cout << "file " << filename << " hasn't been created" << std::endl;
+        afile.close();
+        return false;
+    }
+}
+
+// Запись в бинарный файл
+template <typename Y>
+bool writeMassiveBinFile(std::string filename, Massive <Y> variable) {
+    // Открываем файл для записи
+    std::ofstream file(filename, std::ios::binary);
+
+    // Проверяем успешность открытия файла
+    if (file.is_open()) {
+        std::cout << "file " << filename << " has been opened";
+
+        // Получаем размер массива
+        int count = variable.getSize();
+
+        // Начинаем запись в файл
+        for (unsigned int i = 0; i < count; i++) {
+            // Передаем значение элемента массива
+            Y x = variable.getElement(i);
+            // file.write(massive_of_char, size_of_element) -- запись в бинарник
+            // (char*)&x -- чтение значения x как массива из sizeof(x) байт
+            file.write((char*)&x, sizeof(x));
+        }
+
+        // Не забываем закрыть файл
+        file.close();
+
+        // Сообщаем об успешности операции
+        std::cout << " and wrote" << std::endl;
+        return true;
+    }
+    // Если файл не открылся
+    else {
+        // Сообщаем о провале
+        std::cout << "it hasnt been opened" << std::endl;
+
+        // ...
+        file.close();
+        return false;
+    }
+}
+
+// Чтение из бинарного файла
+Massive <int> readMassiveBinFile(std::string filename) {
+    // Открываем файл
+    std::ifstream file(filename, std::ios::binary);
+
+
+    if (file.is_open()) {
+        // Сообщаем об успехе открытия
+        std::cout << "file " << filename << " has been opened" << std::endl;
+
+        // Создаем новый массив для записи результата
+        Massive <int> mass;
+
+        // Переменная для записи
+        int x;
+
+        // Начинаем запись в массив
+        file.seekg(0, std::ios::end);  // Перенос каретки в конец
+        unsigned int file_size = file.tellg();
+        file.seekg(0);  // перенос каретки в начало
+
+        for (unsigned int i = 0; i < (file_size / sizeof(int)); i++) {
+            // Аналог file.write (см. writeMassiveBinFile())
+            file.read((char*)&x, sizeof(int));
+
+            // Записываем вв новый массив
+            mass.appendElement(x);
+        }
+
+        file.close();
+
+        return mass;
+    }
+    else {
+        std::cout << "file " << filename << " hasnt been opened" << std::endl;
+        file.close();
+
+        // Нам нужно хоть что-то вернуть
+        Massive <int> mass;
+        return mass;
+    }
+}

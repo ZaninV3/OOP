@@ -136,6 +136,20 @@ int main() {
     // 136O
     std::cout << "mass.getResultOf136o(): ";
     std::cout << mass.getResultOf136o() << std::endl;
+    printLine();
+
+    // Создание файла
+    std::cout << "createBinFile(file_bin.txt): ";
+    createBinFile("file_bin.txt");
+
+    // Запись в файл mass
+    std::cout << "writeBinFile(file_bin.txt, mass): ";
+    writeMassiveBinFile("file_bin.txt", mass);
+
+    // Чтение из бинарного файла
+    std::cout << "readMassiveBinFile(file_bin.txt): ";
+    Massive <int> mass1 = readMassiveBinFile("file_bin.txt");
+    mass1.printMassive();
 
     printLine();
     printLine();
