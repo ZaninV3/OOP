@@ -1,4 +1,5 @@
 #include "massives_as_vectors.h"
+using namespace massive_and_files;
 
 
 // Выводит на экран линию-разделитель
