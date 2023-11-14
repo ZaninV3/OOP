@@ -60,6 +60,73 @@
   * Вход: -
   * Процесс: $D = \sqrt{AB^2 + BC^2 + 2 * AB * BC * cos{ABC}}$
   * Выход: $D$
+* ### **getFrontFirstDiagonal**
+  * Вход: -
+  * Процесс: $D = \sqrt{AA1^2 + AD^2 - 2 * AA1 * AD * cos{A1AD}}$
+  * Выход: $D$
+* ### **getFrontSecondDiagonal**
+  * Вход: -
+  * Процесс: $D = \sqrt{AA1^2 + AD^2 + 2 * AA1 * AD * cos{A1AD}}$
+  * Выход: $D$
+* ### **getSideFirstDiagonal**
+  * Вход: -
+  * Процесс: $D = \sqrt{AA1^2 + AB^2 - 2 * AA1 * AB * cos{A1AB}}$
+  * Выход: $D$
+* ### **getSideSecondDiagonal**
+  * Вход: -
+  * Процесс: $D = \sqrt{AA1^2 + AB^2 + 2 * AA1 * AB * cos{A1AB}}$
+  * Выход: $D$
+* ### **getBaseFirstHeight**
+  * Вход: -
+  * Процесс: $H = AB * sin{BAD}$
+  * Выход: $H$
+* ### **getBaseSecondHeight**
+  * Вход: -
+  * Процесс: $H = BC * sin(180 - BAD)$
+  * Выход: $H$
+* ### **getFrontFirstHeight**
+  * Вход: -
+  * Процесс: $H = AA1 * sin(180 - A1AD)$
+  * Выход: $H$
+* ### **getFrontSecondHeight**
+  * Вход: -
+  * Процесс: $H = AD * sin(180 - A1AD)$
+  * Выход: $H$
+* ### **getSideFirstHeight**
+  * Вход: -
+  * Процесс: $H = AA1 * sin(180 - A1AB)$
+  * Выход: $H$
+* ### **getSideSecondHeight**
+  * Вход: -
+  * Процесс: $H = AB * sin(180 - A1AB)$
+  * Выход: $H$
+* ### **getFrontSquare**
+  * Вход: -
+  * Процесс: $S = H1 * AD$, где:
+    * _H1_ = **getFrontFirstHeight**
+  * Выход: $S$
+* ### **getSideSquare**
+  * Вход: -
+  * Процесс: $S = H1 * AB$, где:
+    * _H1_ = **getSideFirstHeight**
+  * Выход: $S$
+* ### **getBaseSquare**
+  * Вход: -
+  * Процесс: $S = H1 * BC$, где:
+    * _H1_ = **getBaseFirstHeight**
+  * Выход: $S$
+* ### **getFrontsAndSidesSquare**
+  * Вход: -
+  * Процесс: $S = 2 * S1 + 2 * S2$, где:
+    * _S1_ = **getFrontSquare**
+    * _S2_ = **getSideSquare**
+  * Выход: $S$
+* ### **getFullSquare**
+  * Вход: -
+  * Процесс: $S = 2(H1 * BC) + S1$, где:
+    * _H1_ = **getBaseFirstHeight**
+    * _S1_ = **getSideSquare**
+  * Выход: $S$
 ----
 * ### **setLineAB**
   * Вход: **pab**
