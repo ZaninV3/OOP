@@ -12,9 +12,14 @@ Parallelepiped getStartParallelepiped() {
 	return Parallelepiped(-3, 4, 5, 45, -10);
 }
 
+// Выводим пустую строку для отступов на cout
+void makeCout() {
+	cout << endl;
+}
+
 // Инициализация объекта и вывод его начальных значений
 void stepInitializing() {
-	cout << endl;
+	makeCout();
 	Parallelepiped test_p = getStartParallelepiped();
 
 	// Выводим на экран его значения ребер
@@ -22,12 +27,12 @@ void stepInitializing() {
 
 	// Выводим значения углов
 	cout << "angles: " << test_p.getAngleBAD() << " " << test_p.getAngleA1AD() << " " << test_p.getAngleA1AB() << endl;
-	cout << endl;
+	makeCout();
 }
 
 // Проверка сеттеров
 void stepCheckSets() {
-	cout << endl;
+	makeCout();
 
 	Parallelepiped test_p = getStartParallelepiped();
 
@@ -53,13 +58,77 @@ void stepCheckSets() {
 	check = test_p.setAngleBAD(90);
 	cout << "result3: " << check << " and the value: " << test_p.getAngleBAD() << endl;
 	
-	cout << endl;
+	makeCout();
+}
+
+// Проверка определения типа параллелепипеда
+void stepCheckType() {
+	makeCout();
+	// Создаем наклонный параллелепипед и выводим
+	cout << "creating the object..." << endl;
+	Parallelepiped test_s = Parallelepiped(3, 4, 5, 65, 32, 78);
+	cout << "result4: " << test_s.getType() << endl;
+
+	// Переделываем в прямой параллелепипед и выводим на экран
+	cout << "converting to a straight parallelepiped... " << test_s.setAngleA1AD(90) << test_s.setAngleA1AB(90) << endl;
+	cout << "result5: " << test_s.getType() << endl;
+
+	// Переделываем в прямоугольный параллелепипед и выводим на экран
+	cout << "converting to a cuboid... " << test_s.setAngleBAD(90) << endl;
+	cout << "result6: " << test_s.getType() << endl;
+
+	// Переделываем в куб и выводим на экран
+	cout << "converting to a cube... " << test_s.setLineAB(5) << test_s.setLineBC(5) << test_s.setLineSide(5) << endl;
+	cout << "result7: " << test_s.getType() << endl;
+
+	// Переделываем в ромбоэдр и выводим на экран
+	cout << "converting to a rhombohedron... " << test_s.setAngleA1AB(23.4) << endl;
+	cout << "result8: " << test_s.getType() << endl;
+
+	makeCout();
+}
+
+// Проверка высот
+void stepCheckHeights() {
+	makeCout();
+	// Для начала проверим самую сложную в плане подсчета высоту
+	// Поэтопу первым делом сделаем куб
+	Parallelepiped test_s = Parallelepiped(4, 4, 4, 90, 90, 90);
+	
+	cout << "result9: " << test_s.getMainHeight() << " and the line AA1: " << test_s.getLineSide() << endl;
+	
+	// Пробуем сменить угол
+	// По идее мы должны получить прямой угол A1AC
+	cout << "changing values of angles... " << test_s.setAngleA1AB(89) << test_s.setAngleA1AD(91) << endl;
+	cout << "result10: " << test_s.getMainHeight() << " and the line AA1: " << test_s.getLineSide() << endl;
+
+	// Все высоты на гранях находятся +- по одной формуле.
+	// Поэтому рассмотрим только 1 грань
+	cout << "changing the value of line... " << test_s.setLineSide(16) << endl;
+	cout << "changing the value of angle... " << test_s.setAngleA1AD(65) << endl;
+	cout << "result11: " << test_s.getFrontFirstHeight() << endl;
+
+	makeCout();
+}
+
+// Проверка диагоналей
+void stepCheckDiagonals() {
+	makeCout();
+
+	// Поскольку формулы диагоналей все +- одинаковые, то проверка будет одна
+	Parallelepiped test_s = getStartParallelepiped();
+	cout << "result12: " << test_s.getFrontFirstDiagonal() << endl;
+
+	makeCout();
 }
 
 int main() {
 	// Для удобной отладки разбил все действия на этапы
 	stepInitializing();
 	stepCheckSets();
+	stepCheckType();
+	stepCheckHeights();
+	stepCheckDiagonals();
 }
 
 // Запуск программы: CTRL+F5 или меню "Отладка" > "Запуск без отладки"

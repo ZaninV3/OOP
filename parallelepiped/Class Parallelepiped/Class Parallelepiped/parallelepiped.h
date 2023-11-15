@@ -1,4 +1,5 @@
 #pragma once
+#include <math.h>  // Библиотека для реализации мат. формул
 
 // Класс параллелепипед
 // В ../../adt.md есть фото параллелепипеда с названиями точек
@@ -19,6 +20,10 @@ private:
 	// Один из углов боковой грани
 	float a1ab_angle = 90;
 
+	// Коэфициент для перевода из градусов в радианы
+	// Имеет смысл скрыть, чтобы пользователь не мог "крутить" это значение
+	float convert_to_rad_k = 3.141592653589793238462643 / 180;
+
 public:
 	// Безпараметрический конструктор класса
 	// Инициализирует объект класса со значениями по умолчанию (все ребра равны 0, а все углы 90)
@@ -32,22 +37,24 @@ public:
 		if (pab_line > 0) {
 			this->ab_line = pab_line;
 		}
-		// Аналогично выше для всех ребер
+		// Если pbc_line > 0, то меняем значение. Учитывая то, что bc_line = 0 по умолчанию,
+		// то можно не проверять на нестрогое равенство, дабы не тратить время на пересваивания с 0 на 0
 		if (pbc_line > 0) {
 			this->bc_line = pbc_line;
 		}
+		// Если side_line > 0, то меняем значение. Учитывая то, что side_line = 0 по умолчанию,
+		// то можно не проверять на нестрогое равенство, дабы не тратить время на пересваивания с 0 на 0
 		if (pside_line > 0) {
 			this->side_line = pside_line;
 		}
 
-		// С углами условие сложнее. угол должен 0 < угол < 180. с той целью,
+		// С углами условие сложнее. Угол должен 0 < угол < 180. С той целью,
 		// чтобы во время создания getVolume нам нужно было делать меньше проверок.
 		// Заодно мы обезопасили пользователя от такой ситуации, когда он не понимает почему большинство методов возвращают 0
 		// Первая часть условия аналогично выше - чтобы не тратить время на переприсваивание одного и того же значения
 		if (pbad_angle != 90 and 0 < pbad_angle and pbad_angle < 180) {
 			this->bad_angle = pbad_angle;
 		}
-		// ...
 		if (pa1ad_angle != 90 and 0 < pa1ad_angle and pa1ad_angle < 180) {
 			this->a1ad_angle = pa1ad_angle;
 		}
@@ -85,6 +92,163 @@ public:
 	// Возвращает значение одного из углов боковой грани
 	float getAngleA1AB() const {
 		return this->a1ab_angle;
+	}
+
+
+	// Возвращает строку с названием типа параллелепипеда
+	// inclined -- наклонный параллелепипед
+	// straight -- прямой параллелепипед (высота параллелепипеда равна боковому ребру)
+	// cuboid -- прямоугольный параллелепипед (все грани -- прямоугольники)
+	// rhombohedron -- ромбоэдр (все грани -- ромбы)
+	// cube -- куб (все грани -- квадраты)
+	std::string getType() {
+		// Разбиваем проверки на части
+
+		// Проверка углов
+		// true, если a1ab_angle и a1ad_angle - прямые
+		bool a1ab_and_a1ad = this->a1ab_angle == 90 and this->a1ad_angle == 90;
+		// true, если все углы прямые
+		bool all_angles = this->bad_angle == 90 and a1ab_and_a1ad;
+
+		// Проверка ребер
+		// true, если все ребра равны
+		bool all_lines = this->ab_line == this->bc_line and this->bc_line == this->side_line;
+
+		// На основе полученных булевых переменных,
+		// определяем тип параллелепипеда и возвращаем значение.
+		// 
+		// Все проверки расставлены по принципу
+		// от самых наиболее встречающихся при разных наборах данных
+		// к наиболее частным случаям параллелепипеда
+		// 
+		// Если все false, то параллелепипед наклонный
+		if (not all_angles and not all_lines and not a1ab_and_a1ad) {
+			return "inclined";
+		}
+		// Если только a1ab_and_a1ad -- true, то параллелепипед прямой
+		else if (not all_angles and not all_lines and a1ab_and_a1ad) {
+			return "straignt";
+		}
+		// Если только all_angles -- true, то параллелепипед прямоугольный
+		else if (all_angles and not all_lines) {
+			return "cuboid";
+		}
+		// Если только all_lines -- true, то параллелепипед ромбоэдр
+		else if (not all_angles and all_lines) {
+			return "rhombohedron";
+		}
+		// если ничего не подошло, то это куб
+		else {
+			return "cube";
+		}
+	}
+
+
+	// Возвращает длину диагонали AC
+	// Формула, по которой идет подсчет, написана в ../../adt.md
+	float getBaseFirstDiagonal() {
+		return sqrt(pow(this->ab_line, 2) + pow(this->bc_line, 2) - 2 * this->ab_line * this->bc_line * cos(convert_to_rad_k * (180 - this->bad_angle)));
+	}
+
+	// Возвращает длину диагонали BD
+	// Формула, по которой идет подсчет, написана в ../../adt.md
+	float getBaseSecondDiagonal() {
+		return sqrt(pow(this->ab_line, 2) + pow(this->bc_line, 2) + 2 * this->ab_line * this->bc_line * cos(convert_to_rad_k * (180 - this->bad_angle)));
+	}
+
+	// Возвращает длину диагонали A1D
+	// Формула, по которой идет подсчет, написана в ../../adt.md
+	float getFrontFirstDiagonal() {
+		return sqrt(pow(this->side_line, 2) + pow(this->bc_line, 2) - 2 * this->side_line * this->bc_line * cos(convert_to_rad_k * this->a1ad_angle));
+	}
+
+	// Возвращает длину диагонали AB1
+	// Формула, по которой идет подсчет, написана в ../../adt.md
+	float getFrontSecondDiagonal() {
+		return sqrt(pow(this->side_line, 2) + pow(this->bc_line, 2) + 2 * this->side_line * this->bc_line * cos(convert_to_rad_k * this->a1ad_angle));
+	}
+
+	// Возвращает длину диагонали A1B
+	// Формула, по которой идет подсчет, написана в ../../adt.md
+	float getSideFirstDiagonal() {
+		return sqrt(pow(this->side_line, 2) + pow(this->ab_line, 2) - 2 * this->side_line * this->ab_line * cos(convert_to_rad_k * this->a1ab_angle));
+	}
+
+	// Возвращает длину диагонали B1A
+	// Формула, по которой идет подсчет, написана в ../../adt.md
+	float getSideSecondDiagonal() {
+		return sqrt(pow(this->side_line, 2) + pow(this->ab_line, 2) + 2 * this->side_line * this->ab_line * cos(convert_to_rad_k * this->a1ab_angle));
+	}
+
+
+	// Возвращает угол A1AC
+	// Формула, по которой идет подсчет, написана в ../../adt.md
+	float getSideAndBaseDiagonalAngle() {
+		// Для начала исключим вариант константного значения
+		if (this->a1ab_angle != this->a1ad_angle) {
+			// Поскольку формула большая и в ней
+			// часто приходится вызывать одни и те же значения
+			// объявим переменные, где название каждой переменной
+			// имеет соответствующее названию на картинке и в формуле
+			// 
+			// Если переменная имеет название из 2-х букв
+			// то это ребро, иначе угол
+			float ab = this->ab_line;
+			float ac = getBaseFirstDiagonal();
+			float bc = this->bc_line;
+
+			float bad = this->bad_angle;
+			float a1ab = this->a1ab_angle;
+			float a1ad = this->a1ad_angle;
+
+			// считаем и возвращаем
+			return (180 / (acos((pow(ab, 2) + pow(ac, 2) - pow(bc, 2)) / (2 * ab * ac)) * 3.141592653589793238462643) / bad) * (a1ad - a1ab) + a1ab;
+		}
+
+		// Иначе углы A1AB и A1AD равны
+		return this->a1ab_angle;
+	}
+
+
+	// Вовращает высоту грани от B до AD
+	// Формула, по которой идет подсчет, написана в ../../adt.md
+	float getBaseFirstHeight() {
+		return this->ab_line * sin(convert_to_rad_k * this->bad_angle);
+	}
+
+	// Вовращает высоту грани от A до CD
+	// Формула, по которой идет подсчет, написана в ../../adt.md
+	float getBaseSecondHeight() {
+		return this->bc_line * sin(convert_to_rad_k * (180 - this->bad_angle));
+	}
+
+	// Вовращает высоту грани от A1 до AD
+	// Формула, по которой идет подсчет, написана в ../../adt.md
+	float getFrontFirstHeight() {
+		return this->side_line * sin(convert_to_rad_k * this->a1ad_angle);
+	}
+
+	// Вовращает высоту грани от A до DD1
+	// Формула, по которой идет подсчет, написана в ../../adt.md
+	float getFrontSecondHeight() {
+		return this->bc_line * sin(convert_to_rad_k * (180 - this->a1ad_angle));
+	}
+
+	// Возвращает высоту грани от A1 до AB
+	// Формула, по которой идет подсчет, написана в ../../adt.md
+	float getSideFirstHeight() {
+		return this->side_line * sin(convert_to_rad_k * this->a1ab_angle);
+	}
+
+	// Возвращает высоту грани от A1 до BB1
+	// Формула, по которой идет подсчет, написана в ../../adt.md
+	float getSideSecondHeight() {
+		return this->ab_line * sin(convert_to_rad_k * (180 - this->a1ab_angle));
+	}
+
+	// Возвращает высоту параллелепипеда
+	float getMainHeight() {
+		return this->side_line * sin(convert_to_rad_k * getSideAndBaseDiagonalAngle());
 	}
 
 
