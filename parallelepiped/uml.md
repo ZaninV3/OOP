@@ -1,60 +1,60 @@
 # UML Parallelepiped
-For [PlantUML](//www.plantuml.com/plantuml/dpng/bPH1ImCn48Nl-ojoR745UxH5w6vByQ0WLBoMsMPS0zEaxcGF8lvt3IYLD1sIwxxlxNilXrcoXy6F1whs1Cpg2GOWGiAZEQAkFgjAgMirMZQzHQrUoO5NqEt8M5HtwYObTtjHPgDHzeFUWUqf0BT90cOvIFSV2KFKLRHlCbqaFv_DhC-drQavTN92dQvTfwjE5xzTeqKz-WTZiMadKxLtblr2mjfL5hOr6a_W9R89vTfcVI8bi9aLa6sSpbxFv-m7O_l0FNySCmg66OtLBJ2k3VJE0eM036UmRCp0_iztiWYEBVumEh88APl1MI_792sbEU4TocA2GquHtkmUJV_c2ruiDeZZvOY4eImZB2-927nPmYCOMxHu-px2W7bDyj0ME4R51jnO7NxFkQQHA4OliI-EniCPrpb7YbEtBHBRbI26pka_fwzNB3SpKOykrLUrHAl70tq3)
+For [PlantUML](//www.plantuml.com/plantuml/png/XPF1IiD0443l-OezjXZ17cqHccqf7XI4YjSowQvnORfRCvk3YF-kYqh2P9gzxdkPUNF8cYAqiJjXSKGWKa_G0g95UtPdQuhFeb3gMhrYWAYWFg3pLjsfcy5hVPHUoHahsc0Eu1jCxxT308i9KWz9Ib9Nh7GsNudFe_9od5rApQKONCgrfPmwN_ss_j76nWVdRQLdStKCdk9Ae7epHVVEs9upeKgBTRNj1O5NYxoW-GgAPhcas3hV9E_vutov8YLMtcWWktNG10-Ovbx-89axrrByrtjpBExj3p9ZawcxDlWe3vLCUQfqMgQq5rbf_lfxwvgtcB-zzpANSr7msCJCrTmJRyxFUmJdkIB6lNVGsibrauO6ueQqXYflqZ3Ak1qYDvZo4h0xZN0T0YeIVdqEzKQ6ye_VS_6_vxXQPFcWxQjOMs-w4tu3)
 ```
 @startuml
 class Parallelepiped
 {
 
-  - unsigned float ab_line = 0
-  - unsigned float bc_line = 0
-  - unsigned float side_line = 0
-  - unsigned float bad_angle = 90
-  - unsigned float a1ad_angle = 90
-  - unsigned float a1ab_angle = 90
+  - float ab_line = 0
+  - float bc_line = 0
+  - float side_line = 0
+  - float bad_angle = 90
+  - float a1ad_angle = 90
+  - float a1ab_angle = 90
 
 
    + Parallelepiped();
    + Parallelepiped(float ab_line = 0, float bc_line = 0, float side_line = 0, float bad_angle = 90, float a1ad_angle = 90, float a1ab_angle = 90);
 
-   + unsigned float getLineAB() const;
-   + unsigned float getLineBC() const;
-   + unsigned float getLineSide() const;
+   + float getLineAB() const;
+   + float getLineBC() const;
+   + float getLineSide() const;
 
-   + unsigned float getAngleBAD() const;
-   + unsigned float getAngleA1AD() const;
-   + unsigned float getAngleA1AB() const;
+   + float getAngleBAD() const;
+   + float getAngleA1AD() const;
+   + float getAngleA1AB() const;
 
    + std::string getType() const;
 
-   + unsigned float getSideAndBaseDiagonalAngle() const;
+   + float getSideAndBaseDiagonalAngle() const;
 
-   + unsigned float getBaseFirstDiagonal() const;
-   + unsigned float getBaseSecondDiagonal() const;
+   + float getBaseFirstDiagonal() const;
+   + float getBaseSecondDiagonal() const;
 
-   + unsigned float getFrontFirstDiagonal() const;
-   + unsigned float getFrontSecondDiagonal() const;
+   + float getFrontFirstDiagonal() const;
+   + float getFrontSecondDiagonal() const;
 
-   + unsigned float getSideFirstDiagonal() const;
-   + unsigned float getSideSecondDiagonal() const;
+   + float getSideFirstDiagonal() const;
+   + float getSideSecondDiagonal() const;
 
-   + unsigned float getBaseFirstHeight() const;
-   + unsigned float getBaseSecondHeight() const;
+   + float getBaseFirstHeight() const;
+   + float getBaseSecondHeight() const;
 
-   + unsigned float getFrontFirstHeight() const;
-   + unsigned float getFrontSecondHeight() const;
+   + float getFrontFirstHeight() const;
+   + float getFrontSecondHeight() const;
 
-   + unsigned float getSideFirstHeight() const;
-   + unsigned float getSideSecondHeight() const;
+   + float getSideFirstHeight() const;
+   + float getSideSecondHeight() const;
 
-   + unsigned float getMainHeight() const;
+   + float getMainHeight() const;
 
-   + unsigned float getFrontSquare() const;
-   + unsigned float getSideSquare() const;
-   + unsigned float getBaseSquare() const;
-   + unsigned float getFrontsAndSidesSquare() const;
-   + unsigned float getFullSquare() const;
+   + float getFrontSquare() const;
+   + float getSideSquare() const;
+   + float getBaseSquare() const;
+   + float getFrontsAndSidesSquare() const;
+   + float getFullSquare() const;
 
-   + unsigned float getVolume() const;
+   + float getVolume() const;
 
    + bool setLineAB() const;
    + bool setLineBC() const;
