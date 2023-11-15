@@ -1,5 +1,5 @@
 # UML Parallelepiped
-For [PlantUML](//www.plantuml.com/plantuml/png/XPF1IiD0443l-OezjXZ17cqHccqf7XI4YjSowQvnORfRCvk3YF-kYqh2P9gzxdkPUNF8cYAqiJjXSKGWKa_G0g95UtPdQuhFeb3gMhrYWAYWFg3pLjsfcy5hVPHUoHahsc0Eu1jCxxT308i9KWz9Ib9Nh7GsNudFe_9od5rApQKONCgrfPmwN_ss_j76nWVdRQLdStKCdk9Ae7epHVVEs9upeKgBTRNj1O5NYxoW-GgAPhcas3hV9E_vutov8YLMtcWWktNG10-Ovbx-89axrrByrtjpBExj3p9ZawcxDlWe3vLCUQfqMgQq5rbf_lfxwvgtcB-zzpANSr7msCJCrTmJRyxFUmJdkIB6lNVGsibrauO6ueQqXYflqZ3Ak1qYDvZo4h0xZN0T0YeIVdqEzKQ6ye_VS_6_vxXQPFcWxQjOMs-w4tu3)
+For [PlantUML](//www.plantuml.com/plantuml/png/ZPF1IWCn48Rl-nGvjhY2FTeYD6af7XI4YjSosyGrC4tgJlOWuhjhKEjsEjtrEl-NVxuvP4u9cjJkiDWY4Aa7Q03HeTlxlRF5Ur4eTQcUCK9IK6tG1wTkr5LdMcsbANdhH1hi1aADUNxT3M3IarJT92kf2sOw6i_4yP5vUQnSSjTIb2nbmrBM6y--_NxIsgKx7vmsex7Qna1f9gHcqPUklNL_EGDqNcpqyW18kPuC0uQle6IdKqgD3tNc7j_svosoeWxM0BcbXpe6mDnx_a4cLxwXz8iVI05Skw_8df8CNJKn9BbK8kLMyJIvL007EzdrjyxNBsduTix9byk5dEjlv5SpJi3-rNSFFd14b7jjeN5zw_e90yG9QGtfO7CP3R0j8YSOyXIntPt4LOoeIFZwF3IBdZ0Roitol-UndWpc7RUFOkw2RNVu2G00)
 ```
 @startuml
 class Parallelepiped
@@ -14,7 +14,7 @@ class Parallelepiped
 
 
    + Parallelepiped();
-   + Parallelepiped(float ab_line = 0, float bc_line = 0, float side_line = 0, float bad_angle = 90, float a1ad_angle = 90, float a1ab_angle = 90);
+   + Parallelepiped(float ab_line, float bc_line, float side_line, float bad_angle = 90, float a1ad_angle = 90, float a1ab_angle = 90);
 
    + float getLineAB() const;
    + float getLineBC() const;
