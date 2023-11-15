@@ -129,6 +129,9 @@ int main() {
 	stepCheckType();
 	stepCheckHeights();
 	stepCheckDiagonals();
+
+	Parallelepiped *dinamic_object = new Parallelepiped;
+	cout << dinamic_object->getType() << endl;
 }
 
 // Запуск программы: CTRL+F5 или меню "Отладка" > "Запуск без отладки"
