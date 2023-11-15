@@ -1,5 +1,5 @@
 # UML Parallelepiped
-For [PlantUML](//www.plantuml.com/plantuml/png/ZPF1IWCn48Rl-nGvjhY2FTeYD6af7XI4YjSosyGrC4tgJlOWuhjhKEjsEjtrEl-NVxuvP4u9cjJkiDWY4Aa7Q03HeTlxlRF5Ur4eTQcUCK9IK6tG1wTkr5LdMcsbANdhH1hi1aADUNxT3M3IarJT92kf2sOw6i_4yP5vUQnSSjTIb2nbmrBM6y--_NxIsgKx7vmsex7Qna1f9gHcqPUklNL_EGDqNcpqyW18kPuC0uQle6IdKqgD3tNc7j_svosoeWxM0BcbXpe6mDnx_a4cLxwXz8iVI05Skw_8df8CNJKn9BbK8kLMyJIvL007EzdrjyxNBsduTix9byk5dEjlv5SpJi3-rNSFFd14b7jjeN5zw_e90yG9QGtfO7CP3R0j8YSOyXIntPt4LOoeIFZwF3IBdZ0Roitol-UndWpc7RUFOkw2RNVu2G00)
+For [PlantUML](//www.plantuml.com/plantuml/png/ZPEnJiCm48RtF8N7LWI9ZZH2gjsgOW09gOYrkjGcMBhQ9NO6X7Xti0fAUhaahFT__k-xmQiGeOxD4RC3GWZY2Mf0D6XEzcHqzfbbGboBL_GG1PHxjCw8Et7JcPO7RXgiDYmDUW-kmZI_xGQm64dARfAKn1KndSqBTdnXdbygvzGrPoLptZ3dzUR5sUythKnyiCv8DPkBWtSX5aogrcFfpchJvWIGQR6IcnPWShcO1XHT4Q9UBaEihQiIz_nn6hP8Yj9f1S5iB5JU0QRUuGU9tDewn3-y9VlWpln4kayIT5jx5_bIZcHR-TFuKWOadPFNtnjRlSNfsoatU3a1EOuqJbnDE0RxLzyZMCSYLEwzWTgChXib50IEe6k2T3gLXGcsGQG4GLuyDiTUN7gF8hHVl-YFrPgEEv-TzhI_l602kHXEpjk_ifLnkZdYDm00)
 ```
 @startuml
 class Parallelepiped
@@ -56,13 +56,13 @@ class Parallelepiped
 
    + float getVolume() const;
 
-   + bool setLineAB() const;
-   + bool setLineBC() const;
-   + bool setLineSide() const;
+   + bool setLineAB();
+   + bool setLineBC();
+   + bool setLineSide();
 
-   + bool setAngleBAD() const;
-   + bool setAngleA1AD() const;
-   + bool setAngleA1AB() const;
+   + bool setAngleBAD();
+   + bool setAngleA1AD();
+   + bool setAngleA1AB();
 }
 @enduml
 ```
