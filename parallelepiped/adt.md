@@ -94,7 +94,7 @@
   * Выход: $H$
 * ### **getFrontFirstHeight**
   * Вход: -
-  * Процесс: $H = AA1 * sin(180 - A1AD)$
+  * Процесс: $H = AA1 * sin(A1AD)$
   * Выход: $H$
 * ### **getFrontSecondHeight**
   * Вход: -
@@ -102,7 +102,7 @@
   * Выход: $H$
 * ### **getSideFirstHeight**
   * Вход: -
-  * Процесс: $H = AA1 * sin(180 - A1AB)$
+  * Процесс: $H = AA1 * sin(A1AB)$
   * Выход: $H$
 * ### **getSideSecondHeight**
   * Вход: -
