@@ -252,6 +252,38 @@ public:
 	}
 
 
+	// Возвращает площадь лицевой грани
+	float getFrontSquare() {
+		return getFrontFirstHeight() * this->bc_line;
+	}
+
+	// Возвращает площадь боковой грани
+	float getSideSquare() {
+		return getSideFirstHeight() * this->ab_line;
+	}
+
+	// Возвращает площадь основания
+	float getBaseSquare() {
+		return getBaseFirstHeight() * this->bc_line;
+	}
+
+	// Возвращает площадь боковых граней
+	float getFrontsAndSidesSquare() {
+		return 2 * getFrontSquare() + 2 * getSideSquare();
+	}
+
+	// Возвращает площадь поверхности
+	float getFullSquare() {
+		return 2 * (getBaseFirstHeight() * this->bc_line) + getSideSquare();
+	}
+
+
+	// Возвращает объем
+	float getVolume() {
+		return getMainHeight() * getBaseSquare();
+	}
+
+
 	// Возвращает true, если значение бокового ребра основания было успешно изменено
 	bool setLineAB(float pab_line) {
 		// Если pab_line >= 0, то переназначаем значение ab_line и возвращаем true, иначе просто возвращаем false
