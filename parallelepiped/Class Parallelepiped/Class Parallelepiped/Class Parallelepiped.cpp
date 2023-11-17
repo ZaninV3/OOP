@@ -122,6 +122,22 @@ void stepCheckDiagonals() {
 	makeCout();
 }
 
+// Проверка площадей и объема
+void stepCheckSV() {
+	makeCout();
+
+	Parallelepiped test_s = getStartParallelepiped();
+	// Задаем начальное значение всех сторон не равное 0
+	test_s.setLineAB(3);
+
+	// Методы работают по +- одной формуле, поэтому проверка нескольких методов
+	cout << "result13: " << test_s.getBaseSquare() << endl;
+	cout << "result14: " << test_s.getFullSquare() << endl;
+	cout << "result13: " << test_s.getVolume() << endl;
+
+	makeCout();
+}
+
 int main() {
 	// Для удобной отладки разбил все действия на этапы
 	stepInitializing();
@@ -129,6 +145,7 @@ int main() {
 	stepCheckType();
 	stepCheckHeights();
 	stepCheckDiagonals();
+	stepCheckSV();
 
 	Parallelepiped *dinamic_object = new Parallelepiped;
 	cout << dinamic_object->getType() << endl;
