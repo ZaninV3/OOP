@@ -147,8 +147,18 @@ int main() {
 	stepCheckDiagonals();
 	stepCheckSV();
 
+	// Динамическая инициализация параллелепипеда
 	Parallelepiped *dinamic_object = new Parallelepiped;
-	cout << dinamic_object->getType() << endl;
+	cout << "dinamic " << dinamic_object->getType() << endl;
+
+	// Создадим массив из указателей
+	Parallelepiped *parallelepipeds[3];
+	for (int i = 0; i <= 2; i++) {
+		parallelepipeds[i] = new Parallelepiped;
+	}
+
+	parallelepipeds[1]->setLineAB(20);
+	cout << "element of point's massive " << parallelepipeds[1]->getLineAB() << endl;
 }
 
 // Запуск программы: CTRL+F5 или меню "Отладка" > "Запуск без отладки"
