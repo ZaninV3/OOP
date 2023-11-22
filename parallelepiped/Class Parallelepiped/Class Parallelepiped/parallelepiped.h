@@ -1,4 +1,5 @@
 #pragma once
+#define _USE_MATH_DEFINES  // Подключаем мат. константы из math.h ради M_PI
 #include <math.h>  // Библиотека для реализации мат. формул
 
 // Класс параллелепипед
@@ -23,7 +24,7 @@ private:
 
 	// Коэфициент для перевода из градусов в радианы
 	// Имеет смысл скрыть, чтобы пользователь не мог "крутить" это значение
-	float convert_to_rad_k = 3.141592653589793238462643 / 180;
+	float convert_to_rad_k = M_PI / 180;
 
 public:
 	// Безпараметрический конструктор класса
@@ -203,7 +204,7 @@ public:
 			float a1ad = this->a1ad_angle;
 
 			// считаем и возвращаем
-			return (180 / (acos((pow(ab, 2) + pow(ac, 2) - pow(bc, 2)) / (2 * ab * ac)) * 3.141592653589793238462643) / bad) * (a1ad - a1ab) + a1ab;
+			return (180 / (acos((pow(ab, 2) + pow(ac, 2) - pow(bc, 2)) / (2 * ab * ac)) * M_PI) / bad) * (a1ad - a1ab) + a1ab;
 		}
 
 		// Иначе углы A1AB и A1AD равны
