@@ -2,6 +2,8 @@
 // Автор Занин Вячеслав ВМК-21
 
 #include <iostream>
+#include <cstdio>  // Для работы с бинарными файлами
+#include <stdlib.h>  // Для генерации случайных чисел
 #include "parallelepiped.h"  // Подключаем заголовочный файл с нашим классом
 using namespace std;
 
@@ -139,6 +141,9 @@ void stepCheckSV() {
 }
 
 int main() {
+	// Генерация случайных чисел
+	srand(time(NULL));
+
 	// Для удобной отладки разбил все действия на этапы
 	stepInitializing();
 	stepCheckSets();
@@ -151,14 +156,38 @@ int main() {
 	Parallelepiped *dinamic_object = new Parallelepiped;
 	cout << "dinamic " << dinamic_object->getType() << endl;
 
+	// Создадим массив из объектов, где все стороны случайны
+	Parallelepiped paral_mass[3];
+	for (int i = 0; i <= 2; i++) {
+		paral_mass[i] = Parallelepiped(rand() + 1, rand() + 1, rand() + 1);
+	}
+	cout << "First side's element of massive " << paral_mass[0].getLineSide() << endl;
+	cout << "Second side's element of massive " << paral_mass[1].getLineSide() << endl;
+	cout << "Third side's element of massive " << paral_mass[2].getLineSide() << endl;
+	makeCout();
+
 	// Создадим массив из указателей
 	Parallelepiped *parallelepipeds[3];
 	for (int i = 0; i <= 2; i++) {
 		parallelepipeds[i] = new Parallelepiped;
 	}
-
 	parallelepipeds[1]->setLineAB(20);
 	cout << "element of point's massive " << parallelepipeds[1]->getLineAB() << endl;
+	makeCout();
+	
+	
+	// Запись и чтение из бинарного файла
+	/*
+	FILE* fin = fopen("bin.txt", "ab");
+	fwrite(&getStartParallelepiped(), sizeof(Parallelepiped), 1, fin);
+	fclose(fin);
+
+	FILE* fout = fopen("bin.txt", "rb");
+	Parallelepiped read_paral;
+	fread(&read_paral, sizeof(Parallelepiped), 1, fout);
+	cout << read_paral->getLineSide() << endl;
+	fclose(fout);
+	*/
 }
 
 // Запуск программы: CTRL+F5 или меню "Отладка" > "Запуск без отладки"
