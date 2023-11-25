@@ -1,52 +1,52 @@
 #pragma once
-#include "parallelepiped.h"  // Подключаем заголовочный файл с нашим классом
-// Возвращает начальный параллелепипед со значениями
+#include "parallelepiped.h"  // РџРѕРґРєР»СЋС‡Р°РµРј Р·Р°РіРѕР»РѕРІРѕС‡РЅС‹Р№ С„Р°Р№Р» СЃ РЅР°С€РёРј РєР»Р°СЃСЃРѕРј
+// Р’РѕР·РІСЂР°С‰Р°РµС‚ РЅР°С‡Р°Р»СЊРЅС‹Р№ РїР°СЂР°Р»Р»РµР»РµРїРёРїРµРґ СЃРѕ Р·РЅР°С‡РµРЅРёСЏРјРё
 Parallelepiped getStartParallelepiped() {
-	// Инициализируем объект с базовыми параметрами
-	// Намерено некоторые параметры делаем с ошибкой и один параметр не указываем
+	// РРЅРёС†РёР°Р»РёР·РёСЂСѓРµРј РѕР±СЉРµРєС‚ СЃ Р±Р°Р·РѕРІС‹РјРё РїР°СЂР°РјРµС‚СЂР°РјРё
+	// РќР°РјРµСЂРµРЅРѕ РЅРµРєРѕС‚РѕСЂС‹Рµ РїР°СЂР°РјРµС‚СЂС‹ РґРµР»Р°РµРј СЃ РѕС€РёР±РєРѕР№ Рё РѕРґРёРЅ РїР°СЂР°РјРµС‚СЂ РЅРµ СѓРєР°Р·С‹РІР°РµРј
 	return Parallelepiped(-3, 4, 5, 45, -10);
 }
 
-// Выводим пустую строку для отступов на cout
+// Р’С‹РІРѕРґРёРј РїСѓСЃС‚СѓСЋ СЃС‚СЂРѕРєСѓ РґР»СЏ РѕС‚СЃС‚СѓРїРѕРІ РЅР° cout
 void makeCout() {
 	std::cout << std::endl;
 }
 
-// Инициализация объекта и вывод его начальных значений
+// РРЅРёС†РёР°Р»РёР·Р°С†РёСЏ РѕР±СЉРµРєС‚Р° Рё РІС‹РІРѕРґ РµРіРѕ РЅР°С‡Р°Р»СЊРЅС‹С… Р·РЅР°С‡РµРЅРёР№
 void stepInitializing() {
 	makeCout();
 	Parallelepiped test_p = getStartParallelepiped();
 
-	// Выводим на экран его значения ребер
+	// Р’С‹РІРѕРґРёРј РЅР° СЌРєСЂР°РЅ РµРіРѕ Р·РЅР°С‡РµРЅРёСЏ СЂРµР±РµСЂ
 	std::cout << "lines: " << test_p.getLineAB() << " " << test_p.getLineBC() << " " << test_p.getLineSide() << std::endl;
 
-	// Выводим значения углов
+	// Р’С‹РІРѕРґРёРј Р·РЅР°С‡РµРЅРёСЏ СѓРіР»РѕРІ
 	std::cout << "angles: " << test_p.getAngleBAD() << " " << test_p.getAngleA1AD() << " " << test_p.getAngleA1AB() << std::endl;
 	makeCout();
 }
 
-// Проверка сеттеров
+// РџСЂРѕРІРµСЂРєР° СЃРµС‚С‚РµСЂРѕРІ
 void stepCheckSets() {
 	makeCout();
 
 	Parallelepiped test_p = getStartParallelepiped();
 
-	// Пробуем менять значения ребер
+	// РџСЂРѕР±СѓРµРј РјРµРЅСЏС‚СЊ Р·РЅР°С‡РµРЅРёСЏ СЂРµР±РµСЂ
 	std::cout << "trying to change the value of line AB" << std::endl;
 
-	// Для начала некорректное значение и проверяем первую попытку замены
+	// Р”Р»СЏ РЅР°С‡Р°Р»Р° РЅРµРєРѕСЂСЂРµРєС‚РЅРѕРµ Р·РЅР°С‡РµРЅРёРµ Рё РїСЂРѕРІРµСЂСЏРµРј РїРµСЂРІСѓСЋ РїРѕРїС‹С‚РєСѓ Р·Р°РјРµРЅС‹
 	bool check = test_p.setLineAB(-200.05);
 	std::cout << "result0: " << check << " and the value: " << test_p.getLineAB() << std::endl;
 
-	// А теперь пробуем добавить корректное значение и проверяем вторую попытку замены
+	// Рђ С‚РµРїРµСЂСЊ РїСЂРѕР±СѓРµРј РґРѕР±Р°РІРёС‚СЊ РєРѕСЂСЂРµРєС‚РЅРѕРµ Р·РЅР°С‡РµРЅРёРµ Рё РїСЂРѕРІРµСЂСЏРµРј РІС‚РѕСЂСѓСЋ РїРѕРїС‹С‚РєСѓ Р·Р°РјРµРЅС‹
 	check = test_p.setLineAB(200.05);
 	std::cout << "result1: " << check << " and the value: " << test_p.getLineAB() << std::endl;
 
 
-	// А теперь проверка углов
+	// Рђ С‚РµРїРµСЂСЊ РїСЂРѕРІРµСЂРєР° СѓРіР»РѕРІ
 	std::cout << "\ntrying to change the value of BAD" << std::endl;
 
-	// Аналогично примеру выше с ребром
+	// РђРЅР°Р»РѕРіРёС‡РЅРѕ РїСЂРёРјРµСЂСѓ РІС‹С€Рµ СЃ СЂРµР±СЂРѕРј
 	check = test_p.setAngleBAD(181);
 	std::cout << "result2: " << check << " and the value: " << test_p.getAngleBAD() << std::endl;
 
@@ -56,49 +56,49 @@ void stepCheckSets() {
 	makeCout();
 }
 
-// Проверка определения типа параллелепипеда
+// РџСЂРѕРІРµСЂРєР° РѕРїСЂРµРґРµР»РµРЅРёСЏ С‚РёРїР° РїР°СЂР°Р»Р»РµР»РµРїРёРїРµРґР°
 void stepCheckType() {
 	makeCout();
-	// Создаем наклонный параллелепипед и выводим
+	// РЎРѕР·РґР°РµРј РЅР°РєР»РѕРЅРЅС‹Р№ РїР°СЂР°Р»Р»РµР»РµРїРёРїРµРґ Рё РІС‹РІРѕРґРёРј
 	std::cout << "creating the object..." << std::endl;
 	Parallelepiped test_s = Parallelepiped(3, 4, 5, 65, 32, 78);
 	std::cout << "result4: " << test_s.getType() << std::endl;
 
-	// Переделываем в прямой параллелепипед и выводим на экран
+	// РџРµСЂРµРґРµР»С‹РІР°РµРј РІ РїСЂСЏРјРѕР№ РїР°СЂР°Р»Р»РµР»РµРїРёРїРµРґ Рё РІС‹РІРѕРґРёРј РЅР° СЌРєСЂР°РЅ
 	std::cout << "converting to a straight parallelepiped... " << test_s.setAngleA1AD(90) << test_s.setAngleA1AB(90) << std::endl;
 	std::cout << "result5: " << test_s.getType() << std::endl;
 
-	// Переделываем в прямоугольный параллелепипед и выводим на экран
+	// РџРµСЂРµРґРµР»С‹РІР°РµРј РІ РїСЂСЏРјРѕСѓРіРѕР»СЊРЅС‹Р№ РїР°СЂР°Р»Р»РµР»РµРїРёРїРµРґ Рё РІС‹РІРѕРґРёРј РЅР° СЌРєСЂР°РЅ
 	std::cout << "converting to a cuboid... " << test_s.setAngleBAD(90) << std::endl;
 	std::cout << "result6: " << test_s.getType() << std::endl;
 
-	// Переделываем в куб и выводим на экран
+	// РџРµСЂРµРґРµР»С‹РІР°РµРј РІ РєСѓР± Рё РІС‹РІРѕРґРёРј РЅР° СЌРєСЂР°РЅ
 	std::cout << "converting to a cube... " << test_s.setLineAB(5) << test_s.setLineBC(5) << test_s.setLineSide(5) << std::endl;
 	std::cout << "result7: " << test_s.getType() << std::endl;
 
-	// Переделываем в ромбоэдр и выводим на экран
+	// РџРµСЂРµРґРµР»С‹РІР°РµРј РІ СЂРѕРјР±РѕСЌРґСЂ Рё РІС‹РІРѕРґРёРј РЅР° СЌРєСЂР°РЅ
 	std::cout << "converting to a rhombohedron... " << test_s.setAngleA1AB(23.4) << std::endl;
 	std::cout << "result8: " << test_s.getType() << std::endl;
 
 	makeCout();
 }
 
-// Проверка высот
+// РџСЂРѕРІРµСЂРєР° РІС‹СЃРѕС‚
 void stepCheckHeights() {
 	makeCout();
-	// Для начала проверим самую сложную в плане подсчета высоту
-	// Поэтопу первым делом сделаем куб
+	// Р”Р»СЏ РЅР°С‡Р°Р»Р° РїСЂРѕРІРµСЂРёРј СЃР°РјСѓСЋ СЃР»РѕР¶РЅСѓСЋ РІ РїР»Р°РЅРµ РїРѕРґСЃС‡РµС‚Р° РІС‹СЃРѕС‚Сѓ
+	// РџРѕСЌС‚РѕРїСѓ РїРµСЂРІС‹Рј РґРµР»РѕРј СЃРґРµР»Р°РµРј РєСѓР±
 	Parallelepiped test_s = Parallelepiped(4, 4, 4, 90, 90, 90);
 
 	std::cout << "result9: " << test_s.getMainHeight() << " and the line AA1: " << test_s.getLineSide() << std::endl;
 
-	// Пробуем сменить угол
-	// По идее мы должны получить прямой угол A1AC
+	// РџСЂРѕР±СѓРµРј СЃРјРµРЅРёС‚СЊ СѓРіРѕР»
+	// РџРѕ РёРґРµРµ РјС‹ РґРѕР»Р¶РЅС‹ РїРѕР»СѓС‡РёС‚СЊ РїСЂСЏРјРѕР№ СѓРіРѕР» A1AC
 	std::cout << "changing values of angles... " << test_s.setAngleA1AB(89) << test_s.setAngleA1AD(91) << std::endl;
 	std::cout << "result10: " << test_s.getMainHeight() << " and the line AA1: " << test_s.getLineSide() << std::endl;
 
-	// Все высоты на гранях находятся +- по одной формуле.
-	// Поэтому рассмотрим только 1 грань
+	// Р’СЃРµ РІС‹СЃРѕС‚С‹ РЅР° РіСЂР°РЅСЏС… РЅР°С…РѕРґСЏС‚СЃСЏ +- РїРѕ РѕРґРЅРѕР№ С„РѕСЂРјСѓР»Рµ.
+	// РџРѕСЌС‚РѕРјСѓ СЂР°СЃСЃРјРѕС‚СЂРёРј С‚РѕР»СЊРєРѕ 1 РіСЂР°РЅСЊ
 	std::cout << "changing the value of line... " << test_s.setLineSide(16) << std::endl;
 	std::cout << "changing the value of angle... " << test_s.setAngleA1AD(65) << std::endl;
 	std::cout << "result11: " << test_s.getFrontFirstHeight() << std::endl;
@@ -106,26 +106,26 @@ void stepCheckHeights() {
 	makeCout();
 }
 
-// Проверка диагоналей
+// РџСЂРѕРІРµСЂРєР° РґРёР°РіРѕРЅР°Р»РµР№
 void stepCheckDiagonals() {
 	makeCout();
 
-	// Поскольку формулы диагоналей все +- одинаковые, то проверка будет одна
+	// РџРѕСЃРєРѕР»СЊРєСѓ С„РѕСЂРјСѓР»С‹ РґРёР°РіРѕРЅР°Р»РµР№ РІСЃРµ +- РѕРґРёРЅР°РєРѕРІС‹Рµ, С‚Рѕ РїСЂРѕРІРµСЂРєР° Р±СѓРґРµС‚ РѕРґРЅР°
 	Parallelepiped test_s = getStartParallelepiped();
 	std::cout << "result12: " << test_s.getFrontFirstDiagonal() << std::endl;
 
 	makeCout();
 }
 
-// Проверка площадей и объема
+// РџСЂРѕРІРµСЂРєР° РїР»РѕС‰Р°РґРµР№ Рё РѕР±СЉРµРјР°
 void stepCheckSV() {
 	makeCout();
 
 	Parallelepiped test_s = getStartParallelepiped();
-	// Задаем начальное значение всех сторон не равное 0
+	// Р—Р°РґР°РµРј РЅР°С‡Р°Р»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РІСЃРµС… СЃС‚РѕСЂРѕРЅ РЅРµ СЂР°РІРЅРѕРµ 0
 	test_s.setLineAB(3);
 
-	// Методы работают по +- одной формуле, поэтому проверка нескольких методов
+	// РњРµС‚РѕРґС‹ СЂР°Р±РѕС‚Р°СЋС‚ РїРѕ +- РѕРґРЅРѕР№ С„РѕСЂРјСѓР»Рµ, РїРѕСЌС‚РѕРјСѓ РїСЂРѕРІРµСЂРєР° РЅРµСЃРєРѕР»СЊРєРёС… РјРµС‚РѕРґРѕРІ
 	std::cout << "result13: " << test_s.getBaseSquare() << std::endl;
 	std::cout << "result14: " << test_s.getFullSquare() << std::endl;
 	std::cout << "result13: " << test_s.getVolume() << std::endl;
