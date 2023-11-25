@@ -175,19 +175,25 @@ int main() {
 	cout << "element of point's massive " << parallelepipeds[1]->getLineAB() << endl;
 	makeCout();
 	
-	
-	// Запись и чтение из бинарного файла
-	/*
-	FILE* fin = fopen("bin.txt", "ab");
-	fwrite(&getStartParallelepiped(), sizeof(Parallelepiped), 1, fin);
-	fclose(fin);
+	// Запись в бинарный файл
+	ofstream file("bin.txt", ios::out | ios::binary);
+	if (file.is_open()) {
+		// Объявляем и инициализируем объект с некоторыми параметрами
+		Parallelepiped some_paral = getStartParallelepiped();
+		file.write(reinterpret_cast<const char*> (&some_paral), sizeof(some_paral));
+	}
+	file.close();
 
-	FILE* fout = fopen("bin.txt", "rb");
-	Parallelepiped read_paral;
-	fread(&read_paral, sizeof(Parallelepiped), 1, fout);
-	cout << read_paral->getLineSide() << endl;
-	fclose(fout);
-	*/
+	// Чтение из бинарного файла
+	Parallelepiped some_paral1;
+	ifstream f("bin.txt", ios::in | ios::binary);
+	if (f.is_open()) {
+		f.read(reinterpret_cast<char*> (&some_paral1), sizeof(some_paral1));
+
+		// Проверка результата должно быть 5, согласно функции getStartParallelepiped()
+		cout << some_paral1.getLineSide() << endl;
+	}
+	f.close();
 }
 
 // Запуск программы: CTRL+F5 или меню "Отладка" > "Запуск без отладки"
