@@ -2,7 +2,7 @@
 // Автор Занин Вячеслав ВМК-21
 
 #include <iostream>
-#include <cstdio>  // Для работы с бинарными файлами
+#include <fstream>  // Для работы с бинарными файлами
 #include <stdlib.h>  // Для генерации случайных чисел
 #include "parallelepiped.h"  // Подключаем заголовочный файл с нашим классом
 using namespace std;
