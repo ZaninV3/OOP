@@ -1,5 +1,5 @@
 # UML Parallelepiped
-For [PlantUML](//www.plantuml.com/plantuml/png/ZPEnJiCm48RtF8N7LWI9ZZH2gjsgOW09gOYrkjGcMBhQ9NO6X7Xti0fAUhaahFT__k-xmQiGeOxD4RC3GWZY2Mf0D6XEzcHqzfbbGboBL_GG1PHxjCw8Et7JcPO7RXgiDYmDUW-kmZI_xGQm64dARfAKn1KndSqBTdnXdbygvzGrPoLptZ3dzUR5sUythKnyiCv8DPkBWtSX5aogrcFfpchJvWIGQR6IcnPWShcO1XHT4Q9UBaEihQiIz_nn6hP8Yj9f1S5iB5JU0QRUuGU9tDewn3-y9VlWpln4kayIT5jx5_bIZcHR-TFuKWOadPFNtnjRlSNfsoatU3a1EOuqJbnDE0RxLzyZMCSYLEwzWTgChXib50IEe6k2T3gLXGcsGQG4GLuyDiTUN7gF8hHVl-YFrPgEEv-TzhI_l602kHXEpjk_ifLnkZdYDm00)
+For [PlantUML](//www.plantuml.com/plantuml/png/ZPD1Qy8m5CVl_HGvAkkOlMsMWQqY6qmG7BkMroRhmcBYadGmnEy-CntLrvXwVVzV_Y-_mviO2zesQn5L0emXIz0W11DimpUCHjie8kIMl0i5ba1P22uPUIIZasbP-QQ6K-QbWHOWQ-7c3wS1986an8cnO7b5k7GhZbobv3VJjh2gqFkkJx8bYsBvJEv8SZyYkyYfa1jaE1Yctl6PSNok6cF7s2iN-yrYlzOmFVplcDRClkoRitmmT6B6ffuqduRI5QUipH6GkSLvDci1Jvub_K2ELnXBnsDZDPUrurv_DfT_uRwOIPg3OJCEjP8WNE_b1uwSSstiFzwINN35zX7jaWYTQoLje1IHg3MavY_rWAYpr_w9yVh3zhiZxh8v1ZqSRWnR8yw3NTMt02wlaLXzDQ1PS5sGoC5u2RJ6P9AwCjF3Da9W0Y5lIZJhJbmg9OXfJp_jZlEfTtmuTjpJNddg2R8aaFnjtqKJ9ccp5hy0)
 ```
 @startuml
 class Parallelepiped
@@ -11,6 +11,7 @@ class Parallelepiped
   - float bad_angle = 90
   - float a1ad_angle = 90
   - float a1ab_angle = 90
+  - static inline float convert_to_rad_k { M_PI / 180 }
 
 
    + Parallelepiped();
