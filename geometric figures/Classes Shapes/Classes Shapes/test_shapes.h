@@ -1,22 +1,22 @@
 #pragma once
-#include "rectangle.h"  // Поключение заголовочного файла с классами Square и Rectangle
-#include <iostream>  // Ввод/вывод в консоль
+#include "rectangle.h"  // РџРѕРєР»СЋС‡РµРЅРёРµ Р·Р°РіРѕР»РѕРІРѕС‡РЅРѕРіРѕ С„Р°Р№Р»Р° СЃ РєР»Р°СЃСЃР°РјРё Square Рё Rectangle
+#include <iostream>  // Р’РІРѕРґ/РІС‹РІРѕРґ РІ РєРѕРЅСЃРѕР»СЊ
 
-// Выводит на экран пустую строку
+// Р’С‹РІРѕРґРёС‚ РЅР° СЌРєСЂР°РЅ РїСѓСЃС‚СѓСЋ СЃС‚СЂРѕРєСѓ
 void printEmptyLine() {
 	std::cout << std::endl;
 }
 
-// Базовая проверка работоспособности класса Square
-// Проверяет работоспособность каждого метода
+// Р‘Р°Р·РѕРІР°СЏ РїСЂРѕРІРµСЂРєР° СЂР°Р±РѕС‚РѕСЃРїРѕСЃРѕР±РЅРѕСЃС‚Рё РєР»Р°СЃСЃР° Square
+// РџСЂРѕРІРµСЂСЏРµС‚ СЂР°Р±РѕС‚РѕСЃРїРѕСЃРѕР±РЅРѕСЃС‚СЊ РєР°Р¶РґРѕРіРѕ РјРµС‚РѕРґР°
 void base_test_square() {
 	{
-		// Объявление без параметров
+		// РћР±СЉСЏРІР»РµРЅРёРµ Р±РµР· РїР°СЂР°РјРµС‚СЂРѕРІ
 		Square test_square = Square();
 		std::cout << "The side of square's costructor without a parameter = " <<
 			test_square.getSide() << std::endl;
 
-		// Сразу проверка setSide
+		// РЎСЂР°Р·Сѓ РїСЂРѕРІРµСЂРєР° setSide
 		std::cout << "Trying to change the wrong value of object (-4.5f): " <<
 			test_square.setSide(-4.5f) << "... and result = ";
 		std::cout << test_square.getSide() << std::endl;
@@ -28,15 +28,15 @@ void base_test_square() {
 	printEmptyLine();
 
 	{
-		// Пробуем объявить с неправильным параметром
+		// РџСЂРѕР±СѓРµРј РѕР±СЉСЏРІРёС‚СЊ СЃ РЅРµРїСЂР°РІРёР»СЊРЅС‹Рј РїР°СЂР°РјРµС‚СЂРѕРј
 		Square test_square = Square(-6.4f);
 		std::cout << "The side of square's constructor with a wrong parameter = " <<
 			test_square.getSide() << std::endl;
 	}
 
-	// А теперь с правильным параметром
-	// Не буду ограничивать область видимости
-	// Так как в дальнейшем нужно проверить остальные методы
+	// Рђ С‚РµРїРµСЂСЊ СЃ РїСЂР°РІРёР»СЊРЅС‹Рј РїР°СЂР°РјРµС‚СЂРѕРј
+	// РќРµ Р±СѓРґСѓ РѕРіСЂР°РЅРёС‡РёРІР°С‚СЊ РѕР±Р»Р°СЃС‚СЊ РІРёРґРёРјРѕСЃС‚Рё
+	// РўР°Рє РєР°Рє РІ РґР°Р»СЊРЅРµР№С€РµРј РЅСѓР¶РЅРѕ РїСЂРѕРІРµСЂРёС‚СЊ РѕСЃС‚Р°Р»СЊРЅС‹Рµ РјРµС‚РѕРґС‹
 	Square test_square = Square(10.2f);
 	std::cout << "The side of square's constructor with a correct parameter = " <<
 		test_square.getSide() << std::endl;
@@ -50,16 +50,16 @@ void base_test_square() {
 	printEmptyLine();
 }
 
-// Базовая проверка работоспособности класса Rectangle
-// Проверяет работоспособность каждого метода
+// Р‘Р°Р·РѕРІР°СЏ РїСЂРѕРІРµСЂРєР° СЂР°Р±РѕС‚РѕСЃРїРѕСЃРѕР±РЅРѕСЃС‚Рё РєР»Р°СЃСЃР° Rectangle
+// РџСЂРѕРІРµСЂСЏРµС‚ СЂР°Р±РѕС‚РѕСЃРїРѕСЃРѕР±РЅРѕСЃС‚СЊ РєР°Р¶РґРѕРіРѕ РјРµС‚РѕРґР°
 void base_test_rectangle() {
 	{
-		// Объявление без параметров
+		// РћР±СЉСЏРІР»РµРЅРёРµ Р±РµР· РїР°СЂР°РјРµС‚СЂРѕРІ
 		Rectangle test_rectangle = Rectangle();
 		std::cout << "The sides of rectangle's costructor without parameters = " <<
 			test_rectangle.getSide() << " " << test_rectangle.getSecondSide() << std::endl;
 
-		// Сразу проверка setSide
+		// РЎСЂР°Р·Сѓ РїСЂРѕРІРµСЂРєР° setSide
 		std::cout << "Trying to change the wrong values of object (-4.5f and -55.3f): " <<
 			test_rectangle.setSide(-4.5f) << test_rectangle.setSecondSide(-55.3f) << "... and result = ";
 		std::cout << test_rectangle.getSide() << " " << test_rectangle.getSide() << std::endl;
@@ -71,15 +71,15 @@ void base_test_rectangle() {
 	printEmptyLine();
 
 	{
-		// Пробуем объявить с неправильным параметром
+		// РџСЂРѕР±СѓРµРј РѕР±СЉСЏРІРёС‚СЊ СЃ РЅРµРїСЂР°РІРёР»СЊРЅС‹Рј РїР°СЂР°РјРµС‚СЂРѕРј
 		Rectangle test_rectangle = Rectangle(-6.4f, -34.1f);
 		std::cout << "The sides of rectangle's constructor with wrong parameters = " <<
 			test_rectangle.getSide() << " " << test_rectangle.getSecondSide() << std::endl;
 	}
 
-	// А теперь с правильным параметром
-	// Не буду ограничивать область видимости
-	// Так как в дальнейшем нужно проверить остальные методы
+	// Рђ С‚РµРїРµСЂСЊ СЃ РїСЂР°РІРёР»СЊРЅС‹Рј РїР°СЂР°РјРµС‚СЂРѕРј
+	// РќРµ Р±СѓРґСѓ РѕРіСЂР°РЅРёС‡РёРІР°С‚СЊ РѕР±Р»Р°СЃС‚СЊ РІРёРґРёРјРѕСЃС‚Рё
+	// РўР°Рє РєР°Рє РІ РґР°Р»СЊРЅРµР№С€РµРј РЅСѓР¶РЅРѕ РїСЂРѕРІРµСЂРёС‚СЊ РѕСЃС‚Р°Р»СЊРЅС‹Рµ РјРµС‚РѕРґС‹
 	Rectangle test_rectangle = Rectangle(10.2f, 12.51f);
 	std::cout << "The sides of rectangle's constructor with correct parameters = " <<
 		test_rectangle.getSide() << " " << test_rectangle.getSecondSide() << std::endl;
