@@ -1,5 +1,5 @@
 # Geometric figures
-For [PlantUML](//www.plantuml.com/plantuml/png/fP91IiD068NtSugVhDhQW5iRXNg3OWzGfiaO2fC4PoOh5TID6vTk1OzGf85AiMVuSoE7SSfqXXgKRlDUtl--nuobeaBL1ISffrB2zAQcWi4j0OZXcbTKWLnaB254VpcnSiy9S06d_SI8rfupDTL2hmzfLKgL-98DE2nEc5WKJ37XT6EOLnK7QNFTRNttdjZULonLjCnvK9tfc6osH-2CUq73q6wvOBG3jkS25cF_3NRGIJlu2wxB3_hvx1CgAEUCLxcWXSTlG6Tpcbbwtzgzm33Cq9EScKtSXCONrF8tkjI-mmCSlO_D3bh-3EEUGuIlk6sViMaVy0lN-1d1-LqSw-_lkCKLhjidR73JlaIxjpy2VCDb-uWRBQoqwGENvjU6UFFz9zhrwKWVipAh2_uD)
+For [PlantUML](//www.plantuml.com/plantuml/png/fP91IWCn68NtESLFLssT0RSw2lK6nHwWf3DnA6Gcc6HMAgWRDoxT2XwXI0SgnPxXdniPOoGcr59nc_VoyhutCrAQIjrKdEISAWMJouPA1bS488KBBgW6DIzOHeWvEN1otmjm2eU3p8hENZ8zCK9_0BcebSv2oGLi5yTCpYkccVIwDSo4uA1Shd_Rl7j3NEzpbcjQbpogpd9H5zCV1DuOGIJn5SS6nz_Gxic8nzf_0nxk91xkW-ppWtun_vXAoZdZefIq2ZQmiDCPBTm2eNM_5P8uonmUsMtyd9_U9AeNRdLcVTk6-FTEBZjg-JMG_pLw-8IRxW7RxXRVSOLlFJYvJbDp_e8RNEAgkySMrzrZptrp0uZFkEZkS6s4fJ6zui9URKcu-1-YVPyTwIDM5qt5Fm00)
 ```
 @startuml
 class Square {
@@ -19,7 +19,7 @@ class Rectangle {
   - float second_side;
 
 
-  + Rectangle(float side, float second_side = 0) : Square(side);
+  + Rectangle(float side = 0, float second_side = 0) : Square(side);
 
   + float getSecondSide() const;
   + float *getSquare() const;
@@ -32,7 +32,7 @@ class Parallelogram {
   - float angle_bad;
 
 
-  + Parallelogram(float side, float second_side, float angle_bad = 90) : Rectangle(side, second_side);
+  + Parallelogram(float side = 0, float second_side = 0, float angle_bad = 90) : Rectangle(side, second_side);
 
   + float getAngle() const;
   + float **getSquare() const;
