@@ -4,4 +4,5 @@
 int main() {
 	base_test_square();
 	base_test_rectangle();
+	base_test_parallelogram();
 }
