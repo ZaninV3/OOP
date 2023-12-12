@@ -3,4 +3,5 @@
 // Точка входа и выхода из программы
 int main() {
 	base_test_square();
+	base_test_rectangle();
 }

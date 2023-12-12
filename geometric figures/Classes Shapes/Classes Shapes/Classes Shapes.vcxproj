@@ -130,6 +130,7 @@
     <ClCompile Include="Classes Shapes.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="rectangle.h" />
     <ClInclude Include="square.h" />
     <ClInclude Include="test_shapes.h" />
   </ItemGroup>
