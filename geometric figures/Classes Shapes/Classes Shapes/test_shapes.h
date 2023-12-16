@@ -1,6 +1,7 @@
 #pragma once
 #include "parallelogram.h"  // Поключение заголовочного файла с классами Square, Rectangle и Parallelogram
 #include <iostream>  // Ввод/вывод в консоль
+// Занин Вячеслав ВМК-21
 
 // Выводит на экран пустую строку
 void printEmptyLine() {
