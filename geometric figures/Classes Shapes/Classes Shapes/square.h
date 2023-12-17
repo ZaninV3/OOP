@@ -1,5 +1,4 @@
 #pragma once  // Позволяет подключать заголовочный файл не более 1 раза
-#include <cmath>  // Математические функции
 // Занин Вячеслав ВМК-21
 
 // Класс квадрат
@@ -30,56 +29,13 @@ public:
 
 	// Возвращает площадь квадрата
 	// S = side^2
-	float getSquare() const;
+	virtual float getSquare() const;
 
 	// Возвращает периметр квадрата
 	// P = 4 * side
-	float getPerimeter() const;
+	virtual float getPerimeter() const;
 
 	// Меняет значение side при условии, что указанное значение > 0
 	// Возвращает true, если параметр удовлетворяет условию
 	bool setSide(float pside);
 };
-
-
-// Конструктор 
-// Инициализирует значение side, если указанное значение больше или равно 0
-// Иначе задает по умолчанию 0
-Square::Square(float pside) {
-	// Если pside меньше 0, то задаем значение по умолчанию
-	if (pside < 0) this->side = 0;
-	// Иначе параметр указан корректно
-	else this->side = pside;
-}
-
-// Возвращает значение стороны
-float Square::getSide() const {
-	return this->side;
-}
-// const здесь означает, что у функции ограничение на использование 
-// То есть если функция объявлена с константным указателем this,
-// то в теле функции запрещается изменять данные класса
-
-// Возвращает площадь квадрата
-// S = side^2
-float Square::getSquare() const {
-	return powf(this->side, 2);
-}
-
-// Возвращает периметр квадрата
-// P = 4 * side
-float Square::getPerimeter() const {
-	return this->side * 4;
-}
-
-// Меняет значение side при условии, что указанное значение > 0
-// Возвращает true, если параметр удовлетворяет условию
-bool Square::setSide(float pside) {
-	// Если pside меньше 0, то возвращаем false
-	if (pside < 0) return false;
-	// Иначе параметр указан корректно
-	else {
-		this->side = pside;
-		return true;
-	}
-}

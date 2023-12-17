@@ -1,11 +1,6 @@
-#pragma once
-#include "square.h"  // Поключение заголовочного файла с классом Square
+#pragma once  // Позволяет подключать заголовочный файл не более 1 раза
+#include "square.h"  // Подключаем класс Square для Rectangle
 // Занин Вячеслав ВМК-21
-
-// Указать override где это необходимо
-// Вывести все реализации в отдельныые cpp
-// Вызов конструктора базового класса  -- воткнуть куда надо
-// В конструкторах вызывать сеттеры для конструкторов, чтобы не было лишних проверок
 
 // Класс прямоугольник
 // Является базовым классом для Parallelogram и производным классом для Square
@@ -19,7 +14,7 @@
 // float getPerimeter() const -- возвращает периметр
 // bool setSide(float side) -- Меняет значение длины первой стороны и возвращает true, если замена прошла успешно
 // bool setSecondSide(float side) -- Меняет значение длины второй стороны и возвращает true, если замена прошла успешно
-class Rectangle: public Square {
+class Rectangle : public Square {
 private:
 	// Длина второй стороны
 	float second_side;
@@ -34,55 +29,13 @@ public:
 
 	// Возвращает площадь квадрата
 	// S = side * second_side
-	float getSquare() const;
+	virtual float getSquare() const override;
 
 	// Возвращает периметр квадрата
 	// P = 2 * side + 2 * second_side
-	float getPerimeter() const;
-	
+	float getPerimeter() const override final;
+
 	// Меняет значение second_side при условии, что указанное значение > 0
 	// Возвращает true, если параметр удовлетворяет условию
 	bool setSecondSide(float psecond_side);
 };
-
-// Конструктор 
-// Инициализирует значения side и second_side, если указанные значения больше или равно 0
-// Иначе задает им по умолчанию 0
-Rectangle::Rectangle(float pside, float psecond_side) : Square(pside) {
-	// В аналогии Square(float pside = 0) инициализируем вторую сторону
-	if (psecond_side < 0) this->second_side = 0;
-	else this->second_side = psecond_side;
-}
-
-// Возвращает значение второй стороны
-float Rectangle::getSecondSide() const {
-	return this->second_side;
-}
-
-// Возвращает площадь квадрата
-// S = side * second_side
-float Rectangle::getSquare() const {
-	return this->second_side * this->getSide();
-}
-// Поскольку при наследовании передаются все методы класса Square
-// то работа Square::getSquare для Rectangle некорректна
-// поэтому переопределим эту функцию
-
-// Возвращает периметр квадрата
-// P = 2 * side + 2 * second_side
-float Rectangle::getPerimeter() const {
-	return this->second_side * 2 + this->getSide() * 2;
-}
-// Аналогичная ситуация, как и Rectangle::getSquare
-
-// Меняет значение second_side при условии, что указанное значение > 0
-// Возвращает true, если параметр удовлетворяет условию
-bool Rectangle::setSecondSide(float psecond_side) {
-	// Если psecond_side меньше 0, то возвращаем false
-	if (psecond_side < 0) return false;
-	// Иначе параметр указан корректно
-	else {
-		this->second_side = psecond_side;
-		return true;
-	}
-}

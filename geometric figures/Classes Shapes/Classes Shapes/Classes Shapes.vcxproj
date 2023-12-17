@@ -129,6 +129,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Classes Shapes.cpp" />
+    <ClCompile Include="parallelogram.cpp" />
+    <ClCompile Include="rectangle.cpp" />
+    <ClCompile Include="square.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="parallelogram.h" />

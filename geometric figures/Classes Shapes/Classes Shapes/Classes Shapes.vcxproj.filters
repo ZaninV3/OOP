@@ -18,12 +18,21 @@
     <ClCompile Include="Classes Shapes.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="square.cpp">
+      <Filter>Файлы заголовков</Filter>
+    </ClCompile>
+    <ClCompile Include="rectangle.cpp">
+      <Filter>Файлы заголовков</Filter>
+    </ClCompile>
+    <ClCompile Include="parallelogram.cpp">
+      <Filter>Файлы заголовков</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="square.h">
+    <ClInclude Include="test_shapes.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="test_shapes.h">
+    <ClInclude Include="square.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="rectangle.h">

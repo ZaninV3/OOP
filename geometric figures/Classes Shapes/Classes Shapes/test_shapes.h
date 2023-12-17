@@ -1,96 +1,189 @@
-#pragma once
-#include "parallelogram.h"  // Поключение заголовочного файла с классами Square, Rectangle и Parallelogram
+#pragma once  // Чтобы заголовок подключали только 1 раз
+#define ZERO 0.0f
+#define CORRECT_VALUE 10.2f
+#define SECOND_CORRECT_VALUE 25.34f
+#define UNCORRECT_VALUE -4.5f
+#define SECOND_UNCORRECT_VALUE -32.912f
+#define CORRECT_ANGLE 23.8f
+#define UNCORRECT_ANGLE 183.06f
+#define DEFAULT_ANGLE 90.0f
+#define _USE_MATH_DEFINES // Для M_PI
+#include "parallelogram.h"  // Подключены все классы
 #include <iostream>  // Ввод/вывод в консоль
+#include <assert.h>  // Для проверок корректности кода
 // Занин Вячеслав ВМК-21
-
-// Сделать проверку сравнения результатов
 
 // Выводит на экран пустую строку
 void printEmptyLine() {
 	std::cout << std::endl;
 }
 
-// Базовая проверка работоспособности класса Square
-// Проверяет работоспособность каждого метода
+// Проверка работоспособности класса Square
 void base_test_square() {
 	{
 		// Объявление без параметров
 		Square test_square = Square();
+		// Получим результат
+		const float without_parameter_value = test_square.getSide();
+
 		std::cout << "The side of square's costructor without a parameter = " <<
-			test_square.getSide() << std::endl;
+			without_parameter_value << std::endl;
+		// Проверка корректности
+		assert(without_parameter_value == ZERO);
+
+
 
 		// Сразу проверка setSide
-		std::cout << "Trying to change the wrong value of object (-4.5f): " <<
-			test_square.setSide(-4.5f) << "... and result = ";
-		std::cout << test_square.getSide() << std::endl;
-		std::cout << "Trying to change the correct value of object (4.5f): " <<
-			test_square.setSide(4.5f) << "... and result = ";
-		std::cout << test_square.getSide() << std::endl;
+		//
+		// Сохраним результат смены для проверки и получим значение
+		// для пропуска через assert-ы и для отображения
+		const bool is_change_correct_complete = test_square.setSide(CORRECT_VALUE);
+		const float change_correct_value = test_square.getSide();
+
+		// Выведем на экран
+		std::cout << "Trying to change the correct value of object (" <<
+			CORRECT_VALUE << "). result = ";
+		std::cout << change_correct_value << std::endl;
+
+		// Проверки
+		assert(is_change_correct_complete == true);
+		assert(change_correct_value == CORRECT_VALUE);
+
+
+
+		// Пробуем неравильно. В аналогии с корректным присваиванием
+		const bool is_change_wrong_complete = test_square.setSide(UNCORRECT_VALUE);
+		const float change_wrong_value = test_square.getSide();
+
+		std::cout << "Trying to change the wrong value of object (" <<
+			UNCORRECT_VALUE << "). result = ";
+		std::cout << change_wrong_value << std::endl;
+
+		assert(is_change_wrong_complete == false);
+		assert(change_wrong_value == CORRECT_VALUE);  // Потому что значение не должно меняться
 	}
 
 	printEmptyLine();
 
 	{
 		// Пробуем объявить с неправильным параметром
-		Square test_square = Square(-6.4f);
+		Square test_square = Square(UNCORRECT_VALUE);
+		const float wrong_value = test_square.getSide();
+
 		std::cout << "The side of square's constructor with a wrong parameter = " <<
-			test_square.getSide() << std::endl;
+			wrong_value << std::endl;
+		assert(wrong_value == ZERO);  // По умолчанию должно быть 0
 	}
+
+	printEmptyLine();
 
 	// А теперь с правильным параметром
 	// Не буду ограничивать область видимости
 	// Так как в дальнейшем нужно проверить остальные методы
-	Square test_square = Square(10.2f);
+	Square test_square = Square(SECOND_CORRECT_VALUE);
+	const float correct_value = test_square.getSide();
 	std::cout << "The side of square's constructor with a correct parameter = " <<
 		test_square.getSide() << std::endl;
+	assert(correct_value == SECOND_CORRECT_VALUE);
 
-	printEmptyLine();
+	// Проверка площади и периметра
+	const float correct_square = test_square.getSquare();
+	std::cout << "Square's square :) = " << correct_square << std::endl;
+	assert(correct_square == SECOND_CORRECT_VALUE * SECOND_CORRECT_VALUE);
 
-	std::cout << "Square's square :) = " << test_square.getSquare() << std::endl;
+	const float correct_perimeter = test_square.getPerimeter();
 	std::cout << "Square's perimeter = " << test_square.getPerimeter() << std::endl;
+	assert(correct_perimeter == SECOND_CORRECT_VALUE * 4);
 
 	printEmptyLine();
 	printEmptyLine();
 }
 
-// Базовая проверка работоспособности класса Rectangle
-// Проверяет работоспособность каждого метода
+// Проверка работоспособности класса Rectangle
 void base_test_rectangle() {
 	{
 		// Объявление без параметров
 		Rectangle test_rectangle = Rectangle();
+		const float first_value = test_rectangle.getSide();
+		const float second_value = test_rectangle.getSecondSide();
 		std::cout << "The sides of rectangle's costructor without parameters = " <<
-			test_rectangle.getSide() << " " << test_rectangle.getSecondSide() << std::endl;
+			 first_value << " " << second_value << std::endl;
+		assert(first_value == ZERO);  // Потому что по умолчанию параметры задаются нулями
+		assert(second_value == ZERO);
+
 
 		// Сразу проверка setSide и setSecondSide
-		std::cout << "Trying to change the wrong values of object (-4.5f and -55.3f): " <<
-			test_rectangle.setSide(-4.5f) << test_rectangle.setSecondSide(-55.3f) << "... and result = ";
-		std::cout << test_rectangle.getSide() << " " << test_rectangle.getSecondSide() << std::endl;
-		std::cout << "Trying to change the correct values of object (4.5f and 55.3f): " <<
-			test_rectangle.setSide(4.5f) << test_rectangle.setSecondSide(55.3f) << "... and result = ";
-		std::cout << test_rectangle.getSide() << " " << test_rectangle.getSecondSide() << std::endl;
+		// Для начала проверка неправильных замен значений
+		const bool is_wrong_first_value = test_rectangle.setSide(UNCORRECT_VALUE);
+		const float wrong_first_value = test_rectangle.getSide();
+
+		const bool is_wrong_second_value = test_rectangle.setSecondSide(SECOND_UNCORRECT_VALUE);
+		const float wrong_second_value = test_rectangle.getSecondSide();
+
+		std::cout << "Trying to change the wrong values of object (" << UNCORRECT_VALUE <<
+			" and " << SECOND_UNCORRECT_VALUE << "): ";
+		std::cout << wrong_first_value << " " << wrong_second_value << std::endl;
+
+		assert(is_wrong_first_value == false);
+		assert(is_wrong_second_value == false);
+		assert(wrong_first_value == ZERO);
+		assert(wrong_second_value == ZERO);
+
+
+		// А теперь правильные замены значений
+		const bool is_correct_first_value = test_rectangle.setSide(CORRECT_VALUE);
+		const float correct_first_value = test_rectangle.getSide();
+
+		const bool is_correct_second_value = test_rectangle.setSecondSide(SECOND_CORRECT_VALUE);
+		const float correct_second_value = test_rectangle.getSecondSide();
+
+		std::cout << "Trying to change the correct values of object (" << CORRECT_VALUE <<
+			" and " << SECOND_CORRECT_VALUE << "): ";
+		std::cout << correct_first_value << " " << correct_second_value << std::endl;
+
+		assert(is_correct_first_value == true);
+		assert(is_correct_second_value == true);
+		assert(correct_first_value == CORRECT_VALUE);
+		assert(correct_second_value == SECOND_CORRECT_VALUE);
 	}
 
 	printEmptyLine();
 
 	{
 		// Пробуем объявить с неправильным параметром
-		Rectangle test_rectangle = Rectangle(-6.4f, -34.1f);
+		Rectangle test_rectangle = Rectangle(UNCORRECT_VALUE, SECOND_UNCORRECT_VALUE);
+
+		const float wrong_first_value = test_rectangle.getSide();
+		const float wrong_second_value = test_rectangle.getSecondSide();
+
 		std::cout << "The sides of rectangle's constructor with wrong parameters = " <<
-			test_rectangle.getSide() << " " << test_rectangle.getSecondSide() << std::endl;
+			wrong_first_value << " " << wrong_second_value << std::endl;
+
+		assert(wrong_first_value == ZERO);
+		assert(wrong_second_value == ZERO);
+
+		printEmptyLine();
 	}
 
 	// А теперь с правильным параметром
 	// Не буду ограничивать область видимости
 	// Так как в дальнейшем нужно проверить остальные методы
-	Rectangle test_rectangle = Rectangle(10.2f, 12.51f);
+	Rectangle test_rectangle = Rectangle(CORRECT_VALUE, SECOND_CORRECT_VALUE);
+
+	const float correct_first_value = test_rectangle.getSide();
+	const float correct_second_value = test_rectangle.getSecondSide();
 	std::cout << "The sides of rectangle's constructor with correct parameters = " <<
-		test_rectangle.getSide() << " " << test_rectangle.getSecondSide() << std::endl;
+		correct_first_value << " " << correct_second_value << std::endl;
+	assert(correct_first_value == CORRECT_VALUE);
+	assert(correct_second_value == SECOND_CORRECT_VALUE);
 
-	printEmptyLine();
+	const float square_value = test_rectangle.getSquare();
+	std::cout << "Rectangle's square = " << square_value << std::endl;
+	assert(square_value == CORRECT_VALUE * SECOND_CORRECT_VALUE);
 
-	std::cout << "Rectangle's square = " << test_rectangle.getSquare() << std::endl;
-	std::cout << "Rectangle's perimeter = " << test_rectangle.getPerimeter() << std::endl;
+	const float perimeter_value = test_rectangle.getPerimeter();
+	std::cout << "Rectangle's perimeter = " << perimeter_value << std::endl;
+	assert(perimeter_value == CORRECT_VALUE + CORRECT_VALUE + SECOND_CORRECT_VALUE + SECOND_CORRECT_VALUE);
 
 	printEmptyLine();
 	printEmptyLine();
@@ -102,45 +195,102 @@ void base_test_parallelogram() {
 	{
 		// Объявление без параметров
 		Parallelogram test_parallelogram = Parallelogram();
-		std::cout << "The sides of parallelogram's costructor without parameters = " <<
-			test_parallelogram.getSide() << " " << test_parallelogram.getSecondSide() <<
-			" " << test_parallelogram.getAngle() << std::endl;
+		const float first_value = test_parallelogram.getSide();
+		const float second_value = test_parallelogram.getSecondSide();
+		const float angle_value = test_parallelogram.getAngle();
+		std::cout << "The sides and the angle of parallelogram's costructor without parameters = " <<
+			first_value << " " << second_value << " " << angle_value << std::endl;
+		assert(first_value == ZERO);  // Потому что по умолчанию параметры задаются нулями
+		assert(second_value == ZERO);
+		assert(angle_value == DEFAULT_ANGLE);  // А угол по умолчанию 
+
 
 		// Сразу проверка setSide, setSecondSide и setAngle
-		std::cout << "Trying to change the wrong values of object (-4.5f, -55.3f and 194.2f): " <<
-			test_parallelogram.setSide(-4.5f) << test_parallelogram.setSecondSide(-55.3f);
-		std::cout << " " << test_parallelogram.setAngle(194.2f) << "... and result = ";
-		std::cout << test_parallelogram.getSide() << " " << test_parallelogram.getSide() <<
-			" " << test_parallelogram.getAngle() << std::endl;
-		std::cout << "Trying to change the correct values of object (4.5f, 55.3f and 104.2f): " <<
-			test_parallelogram.setSide(4.5f) << test_parallelogram.setSecondSide(55.3f);
-		std::cout << " " << test_parallelogram.setAngle(104.2f) << "... and result = ";
-		std::cout << test_parallelogram.getSide() << " " << test_parallelogram.getSecondSide() << 
-			" " << test_parallelogram.getAngle() << std::endl;
+		// Для начала проверка неправильных замен значений
+		const bool is_wrong_first_value = test_parallelogram.setSide(UNCORRECT_VALUE);
+		const float wrong_first_value = test_parallelogram.getSide();
+
+		const bool is_wrong_second_value = test_parallelogram.setSecondSide(SECOND_UNCORRECT_VALUE);
+		const float wrong_second_value = test_parallelogram.getSecondSide();
+
+		const bool is_wrong_angle = test_parallelogram.setAngle(UNCORRECT_ANGLE);
+		const float wrong_angle = test_parallelogram.getAngle();
+
+		std::cout << "Trying to change the wrong values of object (" << UNCORRECT_VALUE <<
+			", " << SECOND_UNCORRECT_VALUE << " and " << UNCORRECT_ANGLE << "): ";
+		std::cout << wrong_first_value << " " << wrong_second_value << " " << wrong_angle << std::endl;
+
+		assert(is_wrong_first_value == false);  // Значения не должны были поменяться
+		assert(is_wrong_second_value == false);
+		assert(is_wrong_angle == false);
+		assert(wrong_first_value == ZERO);
+		assert(wrong_second_value == ZERO);
+		assert(wrong_angle == DEFAULT_ANGLE);
+
+
+		// А теперь правильные замены значений
+		const bool is_correct_first_value = test_parallelogram.setSide(CORRECT_VALUE);
+		const float correct_first_value = test_parallelogram.getSide();
+
+		const bool is_correct_second_value = test_parallelogram.setSecondSide(SECOND_CORRECT_VALUE);
+		const float correct_second_value = test_parallelogram.getSecondSide();
+
+		const bool is_correct_angle = test_parallelogram.setAngle(CORRECT_ANGLE);
+		const float correct_angle = test_parallelogram.getAngle();
+
+		std::cout << "Trying to change the correct values of object (" << CORRECT_VALUE <<
+			", " << SECOND_CORRECT_VALUE << " and " << CORRECT_ANGLE << "): ";
+		std::cout << correct_first_value << " " << correct_second_value << " " << correct_angle << std::endl;
+
+		assert(is_correct_first_value == true);
+		assert(is_correct_second_value == true);
+		assert(is_correct_angle == true);
+		assert(correct_first_value == CORRECT_VALUE);
+		assert(correct_second_value == SECOND_CORRECT_VALUE);
+		assert(correct_angle == CORRECT_ANGLE);
 	}
 
 	printEmptyLine();
 
 	{
 		// Пробуем объявить с неправильным параметром
-		Parallelogram test_parallelogram = Parallelogram(-6.4f, -34.1f, 194.2f);
-		std::cout << "The sides of parallelogram's constructor with wrong parameters = " <<
-			test_parallelogram.getSide() << " " << test_parallelogram.getSecondSide() << 
-			" " << test_parallelogram.getAngle() << std::endl;
+		Parallelogram test_parallelogram = Parallelogram(UNCORRECT_VALUE, SECOND_UNCORRECT_VALUE, UNCORRECT_ANGLE);
+
+		const float wrong_first_value = test_parallelogram.getSide();
+		const float wrong_second_value = test_parallelogram.getSecondSide();
+		const float wrong_angle = test_parallelogram.getAngle();
+
+		std::cout << "The sides and the angle of parallelogram's constructor with wrong parameters = " <<
+			wrong_first_value << " " << wrong_second_value << " " << wrong_angle << std::endl;
+
+		assert(wrong_first_value == ZERO);
+		assert(wrong_second_value == ZERO);
+		assert(wrong_angle == DEFAULT_ANGLE);
+
+		printEmptyLine();
 	}
 
 	// А теперь с правильным параметром
 	// Не буду ограничивать область видимости
 	// Так как в дальнейшем нужно проверить остальные методы
-	Parallelogram test_parallelogram = Parallelogram(10.2f, 12.51f, 104.2f);
-	std::cout << "The sides of parallelogram's constructor with correct parameters = " <<
-		test_parallelogram.getSide() << " " << test_parallelogram.getSecondSide() <<
-		" " << test_parallelogram.getAngle() << std::endl;
+	Parallelogram test_parallelogram = Parallelogram(CORRECT_VALUE, SECOND_CORRECT_VALUE, CORRECT_ANGLE);
 
-	printEmptyLine();
+	const float correct_first_value = test_parallelogram.getSide();
+	const float correct_second_value = test_parallelogram.getSecondSide();
+	const float correct_angle = test_parallelogram.getAngle();
+	std::cout << "The sides and the angle of parallelogram's constructor with correct parameters = " <<
+		correct_first_value << " " << correct_second_value << " " << correct_angle << std::endl;
+	assert(correct_first_value == CORRECT_VALUE);
+	assert(correct_second_value == SECOND_CORRECT_VALUE);
+	assert(correct_angle == CORRECT_ANGLE);
 
-	std::cout << "Parallelogram's square = " << test_parallelogram.getSquare() << std::endl;
-	std::cout << "Parallelogram's perimeter = " << test_parallelogram.getPerimeter() << std::endl;
+	const float square_value = test_parallelogram.getSquare();
+	std::cout << "Parallelogram's square = " << square_value << std::endl;
+	assert(square_value == CORRECT_VALUE * SECOND_CORRECT_VALUE * sinf(CORRECT_ANGLE * 180 / M_PI));
+
+	const float perimeter_value = test_parallelogram.getPerimeter();
+	std::cout << "Parallelogram's perimeter = " << perimeter_value << std::endl;
+	assert(perimeter_value == CORRECT_VALUE + CORRECT_VALUE + SECOND_CORRECT_VALUE + SECOND_CORRECT_VALUE);
 
 	printEmptyLine();
 	printEmptyLine();
